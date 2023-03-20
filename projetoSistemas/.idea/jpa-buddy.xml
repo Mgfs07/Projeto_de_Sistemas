@@ -2,6 +2,5 @@
 <project version="4">
   <component name="JpaBuddyIdeaProjectConfig">
     <option name="renamerInitialized" value="true" />
-    <option name="newEntityIdStrategy" value="Auto" />
   </component>
 </project>

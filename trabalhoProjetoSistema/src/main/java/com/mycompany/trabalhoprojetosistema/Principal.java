@@ -4,17 +4,34 @@
  */
 package com.mycompany.trabalhoprojetosistema;
 
+import com.mycompany.trabalhoprojetosistema.domain.Aeronave;
+import com.mycompany.trabalhoprojetosistema.domain.Dropdown;
+import com.mycompany.trabalhoprojetosistema.domain.Fabricante;
+import com.mycompany.trabalhoprojetosistema.repository.AeronaveRepository;
+import com.mycompany.trabalhoprojetosistema.repository.FabricanteRepository;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author basis
  */
 public class Principal extends javax.swing.JFrame {
 
+    private FabricanteRepository fabricanteRepository = new FabricanteRepository();
+    private AeronaveRepository aeronaveRepository = new AeronaveRepository();
+
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    public Principal() throws SQLException {
         initComponents();
+        buscarFabricantes();
+        buscarAeronaves();
     }
 
     /**
@@ -41,7 +58,7 @@ public class Principal extends javax.swing.JFrame {
         nomeAeronave = new javax.swing.JLabel();
         fabricante = new javax.swing.JLabel();
         textNomeAeronave = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboFabricante = new javax.swing.JComboBox<>();
         panelAeronaveDetalhe = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -50,6 +67,8 @@ public class Principal extends javax.swing.JFrame {
         spinnerPassageiro = new javax.swing.JSpinner();
         spinnerAutonomia = new javax.swing.JSpinner();
         SalvarAeronave = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableAeronave = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,18 +115,39 @@ public class Principal extends javax.swing.JFrame {
         );
 
         salvarFabricante.setText("Salvar");
+        salvarFabricante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                try {
+                    salvarFabricanteMouseClicked(evt);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
         tableFabricante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Fabricante", "Pais "
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tableFabricante);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -118,7 +158,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(salvarFabricante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -130,7 +170,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(salvarFabricante)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Fabricante", jPanel7);
@@ -140,8 +180,6 @@ public class Principal extends javax.swing.JFrame {
         nomeAeronave.setText("Nome");
 
         fabricante.setText("Fabricante");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout panelAeronaveLayout = new javax.swing.GroupLayout(panelAeronave);
         panelAeronave.setLayout(panelAeronaveLayout);
@@ -155,7 +193,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelAeronaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(textNomeAeronave)
-                    .addComponent(jComboBox1, 0, 138, Short.MAX_VALUE))
+                    .addComponent(comboFabricante, 0, 138, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelAeronaveLayout.setVerticalGroup(
@@ -168,7 +206,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelAeronaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fabricante)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -216,6 +254,40 @@ public class Principal extends javax.swing.JFrame {
         );
 
         SalvarAeronave.setText("Salvar");
+        SalvarAeronave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    SalvarAeronaveActionPerformed(evt);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        tableAeronave.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Aeronave", "Fabricante", "Passageiros", "Qtd Carga", "Autonomia"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tableAeronave);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -227,7 +299,8 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(panelAeronave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelAeronaveDetalhe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(SalvarAeronave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(SalvarAeronave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -239,7 +312,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(panelAeronaveDetalhe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SalvarAeronave)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Aeronave", jPanel2);
@@ -268,10 +343,70 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxPaisorigem4ActionPerformed
 
+    private void salvarFabricanteMouseClicked(java.awt.event.MouseEvent evt) throws SQLException {//GEN-FIRST:event_salvarFabricanteMouseClicked
+        Fabricante fabricante = new Fabricante();
+        String nome = textNomeFabricante4.getText();
+        String pais = comboBoxPaisorigem4.getSelectedItem().toString();
+        fabricante.setNome(nome);
+        fabricante.setPaisOrigem(pais);
+        fabricanteRepository.salvar(fabricante);
+        buscarFabricantes();
+    }//GEN-LAST:event_salvarFabricanteMouseClicked
+
+    private void SalvarAeronaveActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_SalvarAeronaveActionPerformed
+        Aeronave aeronave = new Aeronave();
+        aeronave.setNome(nomeAeronave.getText());
+        aeronave.setQtdPassageiro(Integer.parseInt(spinnerPassageiro.getValue().toString()));
+        aeronave.setQtdCarga(Integer.parseInt(spinnerCarga.getValue().toString()));
+        aeronave.setQtdAutonomia(Integer.parseInt(spinnerAutonomia.getValue().toString()));
+        aeronave.setIdFabricante(idFabricante.get(comboFabricante.getSelectedIndex()));
+        aeronaveRepository.salvar(aeronave);
+        buscarAeronaves();
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_SalvarAeronaveActionPerformed
+
+
+    private void buscarFabricantes() throws SQLException {
+        List<Fabricante> list = fabricanteRepository.buscarTodos();
+        DefaultTableModel tabela = (DefaultTableModel) tableFabricante.getModel();
+        tabela.getDataVector().removeAllElements();
+        for(Fabricante p : list){
+            tabela.addRow(new Object[]{p.getNome(), p.getPaisOrigem(), p.getId()});
+        }
+
+        buscarDropdownFabricantes();
+    }
+
+    private void buscarAeronaves() throws SQLException {
+        List<Aeronave> list = aeronaveRepository.buscarTodos();
+        DefaultTableModel tabela = (DefaultTableModel) tableAeronave.getModel();
+        tabela.getDataVector().removeAllElements();
+        for(Aeronave p : list){
+            tabela.addRow(new Object[]{p.getNome(), p.getFabricante().getNome(),
+                    p.getQtdPassageiro(), p.getQtdCarga(), p.getQtdAutonomia(), p.getId()});
+        }
+
+        buscarDropdownFabricantes();
+    }
+
+    Vector<Integer> idFabricante = new Vector<>();
+
+    private void buscarDropdownFabricantes() throws SQLException {
+        List<Dropdown> list = fabricanteRepository.buscarDropdown();
+        for(Dropdown p : list){
+            idFabricante.addElement(p.getValue());
+            comboFabricante.addItem(p.getLabel());
+        }
+    }
+
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        ConexaoBancoDados.connect();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -298,41 +433,30 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                try {
+                    new Principal().setVisible(true);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SalvarAeronave;
-    private javax.swing.JComboBox<String> comboBoxPaisorigem;
-    private javax.swing.JComboBox<String> comboBoxPaisorigem1;
-    private javax.swing.JComboBox<String> comboBoxPaisorigem2;
-    private javax.swing.JComboBox<String> comboBoxPaisorigem3;
     private javax.swing.JComboBox<String> comboBoxPaisorigem4;
+    private javax.swing.JComboBox<String> comboFabricante;
     private javax.swing.JLabel fabricante;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel nomeAeronave;
     private javax.swing.JPanel panelAeronave;
@@ -341,12 +465,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner spinnerAutonomia;
     private javax.swing.JSpinner spinnerCarga;
     private javax.swing.JSpinner spinnerPassageiro;
+    private javax.swing.JTable tableAeronave;
     private javax.swing.JTable tableFabricante;
     private javax.swing.JTextField textNomeAeronave;
-    private javax.swing.JTextField textNomeFabricante;
-    private javax.swing.JTextField textNomeFabricante1;
-    private javax.swing.JTextField textNomeFabricante2;
-    private javax.swing.JTextField textNomeFabricante3;
     private javax.swing.JTextField textNomeFabricante4;
     // End of variables declaration//GEN-END:variables
 }

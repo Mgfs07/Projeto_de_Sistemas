@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1abe892a-0dae-4049-b960-d33a05804523" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Docker/docker-compose-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Docker/postgresql.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/dataSources/1adfd246-d789-48f8-96a1-967845e917e9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/dataSources/1adfd246-d789-48f8-96a1-967845e917e9/storage_v2/_src_/database/projeto.I02Q7Q.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/dataSources/1adfd246-d789-48f8-96a1-967845e917e9/storage_v2/_src_/database/projeto.I02Q7Q/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/dataSources/1adfd246-d789-48f8-96a1-967845e917e9/storage_v2/_src_/database/projeto.I02Q7Q/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/dataSources/1adfd246-d789-48f8-96a1-967845e917e9/storage_v2/_src_/database/projeto.I02Q7Q/schema/public.abK9xQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/ConecaoBancoDados.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/controller/AeronaveController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/controller/FabricanteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/createDataBase.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/domain/Aeronave.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/domain/Fabricante.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/repository/AeronaveRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/repository/FabricanteRepositoy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/repository/GenericDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/repository/Generics.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/service/AeronaveService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/service/FabricanteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/jpa-buddy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trabalhoProjetoSistema/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/Principal.form" beforeDir="false" afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/Principal.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trabalhoProjetoSistema/src/main/java/com/mycompany/trabalhoprojetosistema/Principal.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2N2wB2sZIHyZfvjwU7GHrzzrg37" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/basis/Área de Trabalho/Trabalho Projeto de Sistema/Projeto_de_Sistemas/trabalhoProjetoSistema&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.26551723&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1abe892a-0dae-4049-b960-d33a05804523" name="Changes" comment="" />
+      <created>1678875345866</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1678875345866</updated>
+      <workItem from="1678875347089" duration="1058000" />
+      <workItem from="1678891212573" duration="599000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
